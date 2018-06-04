@@ -80,12 +80,13 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="WXL666">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:title" content="Schedule">
+<meta property="og:url" content="http://yoursite.com/Schedule/index.html">
 <meta property="og:site_name" content="WXL666">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-04T13:24:36.820Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="WXL666">
+<meta name="twitter:title" content="Schedule">
 
 
 
@@ -115,13 +116,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/Schedule/"/>
 
 
 
 
 
-  <title>WXL666</title>
+  <title>Schedule | WXL666</title>
   
 
 
@@ -140,8 +141,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -264,287 +264,37 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/04/编程练习赛62/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WXL666">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WXL666">
-    </span>
-
     
+    
+    <div class="post-block page">
       <header class="post-header">
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/04/编程练习赛62/" itemprop="url">编程练习赛62</a></h1>
-        
+	<h1 class="post-title" itemprop="name headline">Schedule</h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-04T20:34:17+08:00">
-                2018-06-04
-              </time>
-            
 
-            
 
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</header>
 
       
       
-
       
+      <div class="post-body">
+        
         
           
-            <pre><code>描述
-</code></pre><p>小 Hi 手上有 n 张面值互不相同的钱币，且面值都是 2 的幂次，现在他想知道，他可以组合出多少种小于等于 c 的正整数金额。</p>
-<p>输入<br>第一行两个正整数 n , c  (1 ≤ n ≤ 50, 1 ≤ c ≤ 1018)</p>
-<p>第二行n个互不相同的正整数，表示小Hi手上钱币的面值，保证面值都是 2 的幂次，且不超过 1018</p>
-<p>输出<br>输出一个整数表示答案</p>
-<p>样例提示<br><br>可以拼出 1, 4, 5, 8, 9 </p>
-<p>样例输入<br>3 10<br>4 1 8<br><br>样例输出<br>5<br><br>  思路:第一想法是枚举，但发现枚举的次数过多 关键是利用面值都是 2 的幂次从而减少递归的次数。我们可以发现 （1，4，8）1+4+8&lt;2<em>8;<br> 这意味着只要把输入的数排下序。只要找到 2</em>ai&lt;=c 就可以直接 pow(2,i)算出种数。<br><br></p>
-<p>#include&lt;bits/stdc++.h&gt;</p>
-<pre><code>using namespace std;
-const int maxn=60;
-long long a[maxn];
-long long dfs(long long x,long long g){
-if(x==1)
-    return 1+(a[x]&lt;=g);
-if(2*a[x]&lt;=g)
-  return (long long)pow(2,x);
-long long root=dfs(x-1,g);
- if(a[x]&lt;=g) root+=dfs(x-1,g-a[x]);
-return root;
-}
-int main(){
-long long n,c;
-cin&gt;&gt;n&gt;&gt;c;
-for(int i=1;i&lt;=n;i++)
-    cin&gt;&gt;a[i];
-sort(a+1,a+1+n);
-       long long ans=dfs(n,c);
-       cout&lt;&lt;ans-1&lt;&lt;endl;
-}
-</code></pre>
-          
         
+      </div>
+      
+      
       
     </div>
     
     
     
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/02/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="WXL666">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="WXL666">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/02/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-02T13:25:47+08:00">
-                2018-06-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -552,6 +302,10 @@ sort(a+1,a+1+n);
 
 
           
+
+  
+
+
 
         </div>
         
@@ -764,6 +518,10 @@ sort(a+1,a+1+n);
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
