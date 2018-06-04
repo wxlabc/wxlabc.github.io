@@ -279,6 +279,154 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/04/编程练习赛62/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WXL666">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WXL666">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/04/编程练习赛62/" itemprop="url">编程练习赛62</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-04T20:34:17+08:00">
+                2018-06-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <pre><code>描述
+</code></pre><p>小 Hi 手上有 n 张面值互不相同的钱币，且面值都是 2 的幂次，现在他想知道，他可以组合出多少种小于等于 c 的正整数金额。</p>
+<p>输入<br>第一行两个正整数 n , c  (1 ≤ n ≤ 50, 1 ≤ c ≤ 1018)</p>
+<p>第二行n个互不相同的正整数，表示小Hi手上钱币的面值，保证面值都是 2 的幂次，且不超过 1018</p>
+<p>输出<br>输出一个整数表示答案</p>
+<p>样例提示<br><br>可以拼出 1, 4, 5, 8, 9 </p>
+<p>样例输入<br>3 10<br>4 1 8<br><br>样例输出<br>5<br><br>  思路:第一想法是枚举，但发现枚举的次数过多 关键是利用面值都是 2 的幂次从而减少递归的次数。我们可以发现 （1，4，8）1+4+8&lt;2<em>8;<br> 这意味着只要把输入的数排下序。只要找到 2</em>ai&lt;=c 就可以直接 pow(2,i)算出种数。<br><br></p>
+<p>#include&lt;bits/stdc++.h&gt;</p>
+<pre><code>using namespace std;
+const int maxn=60;
+long long a[maxn];
+long long dfs(long long x,long long g){
+if(x==1)
+    return 1+(a[x]&lt;=g);
+if(2*a[x]&lt;=g)
+  return (long long)pow(2,x);
+long long root=dfs(x-1,g);
+ if(a[x]&lt;=g) root+=dfs(x-1,g-a[x]);
+return root;
+}
+int main(){
+long long n,c;
+cin&gt;&gt;n&gt;&gt;c;
+for(int i=1;i&lt;=n;i++)
+    cin&gt;&gt;a[i];
+sort(a+1,a+1+n);
+       long long ans=dfs(n,c);
+       cout&lt;&lt;ans-1&lt;&lt;endl;
+}
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/03/6-03/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -682,7 +830,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -695,7 +843,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">tags</span>
                 
               </div>
