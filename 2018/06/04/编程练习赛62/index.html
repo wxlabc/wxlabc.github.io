@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="描述 小 Hi 手上有 n 张面值互不相同的钱币，且面值都是 2 的幂次，现在他想知道，他可以组合出多少种小于等于 c 的正整数金额。 输入第一行两个正整数 n , c  (1 ≤ n ≤ 50, 1 ≤ c ≤ 1018) 第二行n个互不相同的正整数，表示小Hi手上钱币的面值，保证面值都是 2 的幂次，且不超过 1018 输出输出一个整数表示答案 样例提示可以拼出 1, 4, 5, 8, 9">
+<meta name="description" content="描述小 Hi 手上有 n 张面值互不相同的钱币，且面值都是 2 的幂次，现在他想知道，他可以组合出多少种小于等于 c 的正整数金额。 输入第一行两个正整数 n , c  (1 ≤ n ≤ 50, 1 ≤ c ≤ 1018) 第二行n个互不相同的正整数，表示小Hi手上钱币的面值，保证面值都是 2 的幂次，且不超过 1018 输出输出一个整数表示答案 样例提示可以拼出 1, 4, 5, 8, 9  样">
 <meta name="keywords" content="排序加枚举剪枝">
 <meta property="og:type" content="article">
 <meta property="og:title" content="编程练习赛62">
 <meta property="og:url" content="http://yoursite.com/2018/06/04/编程练习赛62/index.html">
 <meta property="og:site_name" content="WXL666">
-<meta property="og:description" content="描述 小 Hi 手上有 n 张面值互不相同的钱币，且面值都是 2 的幂次，现在他想知道，他可以组合出多少种小于等于 c 的正整数金额。 输入第一行两个正整数 n , c  (1 ≤ n ≤ 50, 1 ≤ c ≤ 1018) 第二行n个互不相同的正整数，表示小Hi手上钱币的面值，保证面值都是 2 的幂次，且不超过 1018 输出输出一个整数表示答案 样例提示可以拼出 1, 4, 5, 8, 9">
+<meta property="og:description" content="描述小 Hi 手上有 n 张面值互不相同的钱币，且面值都是 2 的幂次，现在他想知道，他可以组合出多少种小于等于 c 的正整数金额。 输入第一行两个正整数 n , c  (1 ≤ n ≤ 50, 1 ≤ c ≤ 1018) 第二行n个互不相同的正整数，表示小Hi手上钱币的面值，保证面值都是 2 的幂次，且不超过 1018 输出输出一个整数表示答案 样例提示可以拼出 1, 4, 5, 8, 9  样">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-05T11:00:27.206Z">
+<meta property="og:updated_time" content="2018-06-05T11:20:13.296Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编程练习赛62">
-<meta name="twitter:description" content="描述 小 Hi 手上有 n 张面值互不相同的钱币，且面值都是 2 的幂次，现在他想知道，他可以组合出多少种小于等于 c 的正整数金额。 输入第一行两个正整数 n , c  (1 ≤ n ≤ 50, 1 ≤ c ≤ 1018) 第二行n个互不相同的正整数，表示小Hi手上钱币的面值，保证面值都是 2 的幂次，且不超过 1018 输出输出一个整数表示答案 样例提示可以拼出 1, 4, 5, 8, 9">
+<meta name="twitter:description" content="描述小 Hi 手上有 n 张面值互不相同的钱币，且面值都是 2 的幂次，现在他想知道，他可以组合出多少种小于等于 c 的正整数金额。 输入第一行两个正整数 n , c  (1 ≤ n ≤ 50, 1 ≤ c ≤ 1018) 第二行n个互不相同的正整数，表示小Hi手上钱币的面值，保证面值都是 2 的幂次，且不超过 1018 输出输出一个整数表示答案 样例提示可以拼出 1, 4, 5, 8, 9  样">
 
 
 
@@ -403,14 +403,13 @@
       
 
       
-        <pre><code>描述
-</code></pre><p>小 Hi 手上有 n 张面值互不相同的钱币，且面值都是 2 的幂次，现在他想知道，他可以组合出多少种小于等于 c 的正整数金额。</p>
+        <h1 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h1><p>小 Hi 手上有 n 张面值互不相同的钱币，且面值都是 2 的幂次，现在他想知道，他可以组合出多少种小于等于 c 的正整数金额。</p>
 <p>输入<br>第一行两个正整数 n , c  (1 ≤ n ≤ 50, 1 ≤ c ≤ 1018)</p>
 <p>第二行n个互不相同的正整数，表示小Hi手上钱币的面值，保证面值都是 2 的幂次，且不超过 1018</p>
 <p>输出<br>输出一个整数表示答案</p>
 <p>样例提示<br><br>可以拼出 1, 4, 5, 8, 9 </p>
 <p>样例输入<br>3 10<br>4 1 8<br><br>样例输出<br>5<br><br>  思路:第一想法是枚举，但发现枚举的次数过多 关键是利用面值都是 2 的幂次从而减少递归的次数。我们可以发现 （1，4，8）1+4+8&lt;2<em>8;<br> 这意味着只要把输入的数排下序。只要找到 2</em>ai&lt;=c 就可以直接 pow(2,i)算出种数。<br><br></p>
-<p>#include&lt;bits/stdc++.h&gt;</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>#include&lt;bits/stdc++.h&gt;</p>
 <pre><code>using namespace std;
 const int maxn=60;
 long long a[maxn];
@@ -522,8 +521,17 @@ sort(a+1,a+1+n);
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -575,6 +583,16 @@ sort(a+1,a+1+n);
           
 
           
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://wxlabc.github.io/" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
 
           
           
@@ -587,6 +605,22 @@ sort(a+1,a+1+n);
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#描述"><span class="nav-number">1.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
