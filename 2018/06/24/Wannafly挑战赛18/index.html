@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数论," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="A 序列题目描述：  有一个长度为n的序列a，已知a[1]=a[n]=1，且对于2 &amp;lt;= x &amp;lt;= n，a[x] / a[x-1]是以下三个数字之一 [ 1，-2，0.5 ],问有多少种不同的序列满足题意。  两个序列不同当且仅当它们有至少一个位置上的数字不同，序列a可以为任何实数。 输入描述：   一个整数 表示n (1&amp;lt;= n &amp;lt;= 1e3)； 输出描述：   一个整数">
+<meta name="keywords" content="数论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wannafly挑战赛18">
+<meta property="og:url" content="http://yoursite.com/2018/06/24/Wannafly挑战赛18/index.html">
+<meta property="og:site_name" content="WXL666">
+<meta property="og:description" content="A 序列题目描述：  有一个长度为n的序列a，已知a[1]=a[n]=1，且对于2 &amp;lt;= x &amp;lt;= n，a[x] / a[x-1]是以下三个数字之一 [ 1，-2，0.5 ],问有多少种不同的序列满足题意。  两个序列不同当且仅当它们有至少一个位置上的数字不同，序列a可以为任何实数。 输入描述：   一个整数 表示n (1&amp;lt;= n &amp;lt;= 1e3)； 输出描述：   一个整数">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-06-24T13:37:55.195Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Wannafly挑战赛18">
+<meta name="twitter:description" content="A 序列题目描述：  有一个长度为n的序列a，已知a[1]=a[n]=1，且对于2 &amp;lt;= x &amp;lt;= n，a[x] / a[x-1]是以下三个数字之一 [ 1，-2，0.5 ],问有多少种不同的序列满足题意。  两个序列不同当且仅当它们有至少一个位置上的数字不同，序列a可以为任何实数。 输入描述：   一个整数 表示n (1&amp;lt;= n &amp;lt;= 1e3)； 输出描述：   一个整数">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/24/Wannafly挑战赛18/"/>
+
+
+
+
+
+  <title>Wannafly挑战赛18 | WXL666</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://wxlabc.github.io"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">WXL666</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/Categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/24/Wannafly挑战赛18/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WXL666">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WXL666">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Wannafly挑战赛18</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-24T20:48:20+08:00">
+                2018-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Categories/牛客挑战赛/" itemprop="url" rel="index">
+                    <span itemprop="name">牛客挑战赛</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="A-序列"><a href="#A-序列" class="headerlink" title="A 序列"></a>A 序列</h1><h1 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h1><p>  有一个长度为n的序列a，已知a[1]=a[n]=1，且对于2 &lt;= x &lt;= n，a[x] / a[x-1]是以下三个数字之一 [ 1，-2，0.5 ],问有多少种不同的序列满足题意。<br>  两个序列不同当且仅当它们有至少一个位置上的数字不同，序列a可以为任何实数。</p>
+<h1 id="输入描述："><a href="#输入描述：" class="headerlink" title="输入描述："></a>输入描述：</h1><p>   一个整数 表示n (1&lt;= n &lt;= 1e3)；</p>
+<h1 id="输出描述："><a href="#输出描述：" class="headerlink" title="输出描述："></a>输出描述：</h1><p>   一个整数 表示答案模109+7；</p>
+<h1 id="示例1："><a href="#示例1：" class="headerlink" title="示例1："></a>示例1：</h1><p>   输入<br>    5<br>   输出<br>    7</p>
+<h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><p>   本题有个比较明显的规律 -2和0.5要同时出现并且-2要出现两次所以0.5要出现两次。并且他们的位置随意。所以先求出有多少个即n/4；然后枚举i从0到 n/4;</p>
+<h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line">#define ll long long</span><br><span class="line">using namespace std;</span><br><span class="line">const int maxn=1e3+10;</span><br><span class="line">const int mod=1e9+7;</span><br><span class="line">ll f[maxn][maxn];</span><br><span class="line">void init()&#123;</span><br><span class="line">    for(int i=0;i&lt;=1009;i++)</span><br><span class="line">        f[i][0]=1;</span><br><span class="line">    for(int i=1;i&lt;=1009;i++)</span><br><span class="line">        for(int j=1;j&lt;=i;j++)</span><br><span class="line">         f[i][j]=(f[i-1][j]+f[i-1][j-1])%mod;</span><br><span class="line">    return ;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">    int n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    init();</span><br><span class="line">    int t=n-1;</span><br><span class="line">    ll ans=0;</span><br><span class="line">    int h=t/4;</span><br><span class="line">    for(int i=0;i&lt;=h;i++)&#123;</span><br><span class="line">        ans=(ans+f[t][2*i]*f[t-2*i][2*i]%mod)%mod;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>总结：这题虽然找到要成对出现但我没有想到他出现的位置可以随意。</p>
+<hr>
+<h1 id="C-异或和"><a href="#C-异或和" class="headerlink" title="C 异或和"></a>C 异或和</h1><h1 id="题目描述：-1"><a href="#题目描述：-1" class="headerlink" title="题目描述："></a>题目描述：</h1><p>  有一个n<em>m的网格图，给出小B出现在每个位置的可能性，用一个n</em>m的01矩阵表示，小B等概率出现在所有1的位置。求小A在每个位置上与小B期望曼哈顿距离的异或和，先把期望取模之后再异或</p>
+<h1 id="输入描述：-1"><a href="#输入描述：-1" class="headerlink" title="输入描述："></a>输入描述：</h1><p>  第一行读入两个整数 n,m (n,m &lt;= 2000)<br>  接下来n行，每行读入一个长度为m的01字符串。</p>
+<h1 id="输出描述：-1"><a href="#输出描述：-1" class="headerlink" title="输出描述："></a>输出描述：</h1><p>  输出一个整数表示答案模 109+7</p>
+<h1 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h1><p>  输入<br>  1 3<br>  101<br>  输出<br>  1</p>
+<h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>  小A出现在(1,1)的时候期望曼哈顿距离是1<br>  小A出现在(1,2)的时候期望曼哈顿距离是1<br>  小A出现在(1,3)的时候期望曼哈顿距离是1<br>  答案是这三者的异或和。</p>
+<h1 id="思路：-1"><a href="#思路：-1" class="headerlink" title="思路："></a>思路：</h1><p>  分别求x方向对点的贡献度，y方向对点的贡献度<br>  然后求出期望再异或和(注意：异或和不要取模)。</p>
+<h1 id="代码：-1"><a href="#代码：-1" class="headerlink" title="代码："></a>代码：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">	#include&lt;bits/stdc++.h&gt;</span><br><span class="line">#define ll long long</span><br><span class="line">using namespace std;</span><br><span class="line">const int maxn=2010;</span><br><span class="line">const int mod=1e9+7;</span><br><span class="line">ll lx[maxn],rx[maxn],ly[maxn],ry[maxn],vis1[maxn],vis2[maxn];</span><br><span class="line">char s[maxn][maxn];</span><br><span class="line">ll quickpow(ll a,ll b)&#123;</span><br><span class="line">    ll sum=1;</span><br><span class="line">    while(b)&#123;</span><br><span class="line">        if(b&amp;1)&#123;</span><br><span class="line">            sum=(sum*a)%mod;</span><br><span class="line">            //cout&lt;&lt;sum&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">        a=(a*a)%mod;</span><br><span class="line">        b&gt;&gt;=1;</span><br><span class="line">    &#125;</span><br><span class="line">    //cout&lt;&lt;sum&lt;&lt;endl;</span><br><span class="line">    return sum;</span><br><span class="line">&#125;</span><br><span class="line">int main()&#123;</span><br><span class="line">    ll n,m;</span><br><span class="line">    scanf(&quot;%lld%lld&quot;,&amp;n,&amp;m);</span><br><span class="line">    for(int i=1;i&lt;=n;i++)&#123;</span><br><span class="line">        scanf(&quot;%s&quot;,s[i]+1);</span><br><span class="line">    &#125;</span><br><span class="line">    ll num=0;</span><br><span class="line">    for(int i=1;i&lt;=n;i++)</span><br><span class="line">    for(int j=1;j&lt;=m;j++)&#123;</span><br><span class="line">        if(s[i][j]==&apos;1&apos;)&#123;</span><br><span class="line">            vis1[j]++;</span><br><span class="line">            vis2[i]++;</span><br><span class="line">            num++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ll t=vis1[1];</span><br><span class="line">    for(int i=2;i&lt;=m;i++)&#123;</span><br><span class="line">        lx[i]=(lx[i-1]+t)%mod;</span><br><span class="line">        t=(t+vis1[i])%mod;</span><br><span class="line">    &#125;</span><br><span class="line">     t=vis1[m];</span><br><span class="line">    for(int i=m-1;i&gt;=1;i--)&#123;</span><br><span class="line">        rx[i]=(rx[i+1]+t)%mod;</span><br><span class="line">        t=(t+vis1[i])%mod;</span><br><span class="line">    &#125;</span><br><span class="line">    t=vis2[1];</span><br><span class="line">    for(int i=2;i&lt;=n;i++)&#123;</span><br><span class="line">        ly[i]=(ly[i-1]+t)%mod;</span><br><span class="line">        t=(t+vis2[i])%mod;</span><br><span class="line">    &#125;</span><br><span class="line">    t=vis2[n];</span><br><span class="line">    for(int i=n-1;i&gt;=1;i--)&#123;</span><br><span class="line">        ry[i]=(ry[i+1]+t)%mod;</span><br><span class="line">        t=(t+vis2[i])%mod;</span><br><span class="line">    &#125;</span><br><span class="line">    ll ans=0;</span><br><span class="line">    for(int i=1;i&lt;=n;i++)</span><br><span class="line">        for(int j=1;j&lt;=m;j++)&#123;</span><br><span class="line">            ans=(ans^((lx[j]+rx[j]+ly[i]+ry[i])%mod*quickpow(num,mod-2))%mod);</span><br><span class="line">           // cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">            //cout&lt;&lt;((lx[j]+rx[j]+ly[i]+ry[i])%mod*quickpow(num,mod-2))%mod&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%lld\n&quot;,ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>总结：这道题关键是分开求x，y的贡献度这也给了我一个解题经验。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数论/" rel="tag"># 数论</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/24/牛客网练习赛20/" rel="next" title="牛客网练习赛20">
+                <i class="fa fa-chevron-left"></i> 牛客网练习赛20
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="WXL666" />
+            
+              <p class="site-author-name" itemprop="name">WXL666</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/Categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="undefined" target="_blank" title="github">
+                      
+                        <i class="fa fa-fw fa-globe"></i>github</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://wxlabc.github.io/" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#A-序列"><span class="nav-number">1.</span> <span class="nav-text">A 序列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述："><span class="nav-number">2.</span> <span class="nav-text">题目描述：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入描述："><span class="nav-number">3.</span> <span class="nav-text">输入描述：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输出描述："><span class="nav-number">4.</span> <span class="nav-text">输出描述：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#示例1："><span class="nav-number">5.</span> <span class="nav-text">示例1：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思路："><span class="nav-number">6.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码："><span class="nav-number">7.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#C-异或和"><span class="nav-number">8.</span> <span class="nav-text">C 异或和</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述：-1"><span class="nav-number">9.</span> <span class="nav-text">题目描述：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入描述：-1"><span class="nav-number">10.</span> <span class="nav-text">输入描述：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输出描述：-1"><span class="nav-number">11.</span> <span class="nav-text">输出描述：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#示例1"><span class="nav-number">12.</span> <span class="nav-text">示例1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">13.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思路：-1"><span class="nav-number">14.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码：-1"><span class="nav-number">15.</span> <span class="nav-text">代码：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WXL666</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="js/src/love.js"></script>
