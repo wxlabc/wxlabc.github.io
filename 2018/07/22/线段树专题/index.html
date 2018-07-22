@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据结构," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1078 : 线段树的区间修改题目描述:对于小Ho表现出的对线段树的理解，小Hi表示挺满意的，但是满意就够了么？于是小Hi将问题改了改， 又出给了小Ho： 假设货架上从左到右摆放了N种商品，并且依次标号为1到N，其中标号为i的商品的价格为Pi 。小Hi的每次操作分为两种可能，第一种是修改价格——小Hi给出一段区间[L, R]和一个新的价格NewP ，所有标号在这段区间中的商品的价格都变成NewP。">
+<meta name="keywords" content="数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="线段树专题">
+<meta property="og:url" content="http://yoursite.com/2018/07/22/线段树专题/index.html">
+<meta property="og:site_name" content="WXL666">
+<meta property="og:description" content="1078 : 线段树的区间修改题目描述:对于小Ho表现出的对线段树的理解，小Hi表示挺满意的，但是满意就够了么？于是小Hi将问题改了改， 又出给了小Ho： 假设货架上从左到右摆放了N种商品，并且依次标号为1到N，其中标号为i的商品的价格为Pi 。小Hi的每次操作分为两种可能，第一种是修改价格——小Hi给出一段区间[L, R]和一个新的价格NewP ，所有标号在这段区间中的商品的价格都变成NewP。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-22T08:41:54.436Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="线段树专题">
+<meta name="twitter:description" content="1078 : 线段树的区间修改题目描述:对于小Ho表现出的对线段树的理解，小Hi表示挺满意的，但是满意就够了么？于是小Hi将问题改了改， 又出给了小Ho： 假设货架上从左到右摆放了N种商品，并且依次标号为1到N，其中标号为i的商品的价格为Pi 。小Hi的每次操作分为两种可能，第一种是修改价格——小Hi给出一段区间[L, R]和一个新的价格NewP ，所有标号在这段区间中的商品的价格都变成NewP。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/07/22/线段树专题/"/>
+
+
+
+
+
+  <title>线段树专题 | WXL666</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+    <a href="https://wxlabc.github.io"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">WXL666</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/Categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/22/线段树专题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WXL666">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WXL666">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">线段树专题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-22T15:12:00+08:00">
+                2018-07-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/Categories/hihoCoder/" itemprop="url" rel="index">
+                    <span itemprop="name">hihoCoder</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1078-线段树的区间修改"><a href="#1078-线段树的区间修改" class="headerlink" title="1078 : 线段树的区间修改"></a>1078 : 线段树的区间修改</h1><h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述:"></a>题目描述:</h1><pre><code>对于小Ho表现出的对线段树的理解，小Hi表示挺满意的，但是满意就够了么？于是小Hi将问题改了改，
+又出给了小Ho：
+假设货架上从左到右摆放了N种商品，并且依次标号为1到N，其中标号为i的商品的价格为Pi
+。小Hi的每次操作分为两种可能，第一种是修改价格——小Hi给出一段区间[L, R]和一个新的价格NewP
+，所有标号在这段区间中的商品的价格都变成NewP。
+第二种操作是询问——小Hi给出一段区间[L, R]，
+而小Ho要做的便是计算出所有标号在这段区间中的商品的总价格，然后告诉小Hi。
+那么这样的一个问题，小Ho该如何解决呢？
+</code></pre><h1 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述:"></a>输入描述:</h1><pre><code>每个测试点（输入文件）有且仅有一组测试数据。
+
+每组测试数据的第1行为一个整数N，意义如前文所述。
+
+每组测试数据的第2行为N个整数，分别描述每种商品的重量，其中第i个整数表示标号为i的商品的重量Pi。
+
+每组测试数据的第3行为一个整数Q，表示小Hi进行的操作数。
+
+每组测试数据的第N+4~N+Q+3行，每行分别描述一次操作，
+每行的开头均为一个属于0或1的数字，分别表示该行描述一个询问和一次商品的价格的更改两种情况。
+对于第N+i+3行，如果该行描述一个询问，则接下来为两个整数Li, Ri，
+表示小Hi询问的一个区间[Li, Ri]；如果该行描述一次商品的价格的更改，
+则接下来为三个整数Li，Ri，NewP，表示标号在区间[Li, Ri]的商品的价格全部修改为NewP。
+
+对于100%的数据，满足N&lt;=10^5，Q&lt;=10^5, 1&lt;=Li&lt;=Ri&lt;=N，1&lt;=Pi&lt;=N, 0&lt;Pi, NewP&lt;=10^4。
+</code></pre><h1 id="输出描述"><a href="#输出描述" class="headerlink" title="输出描述:"></a>输出描述:</h1><pre><code>对于每组测试数据，对于每个小Hi的询问，按照在输入中出现的顺序，各输出一行，
+表示查询的结果：标号在区间[Li, Ri]中的所有商品的价格之和。
+</code></pre><h1 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入:"></a>样例输入:</h1><pre><code>10
+4733 6570 8363 7391 4511 1433 2281 187 5166 378 
+6
+1 5 10 1577
+1 1 7 3649
+0 8 10
+0 1 4
+1 6 8 157
+1 3 4 1557
+</code></pre><h1 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h1><pre><code>4731
+14596
+</code></pre><h1 id="思路"><a href="#思路" class="headerlink" title="思路:"></a>思路:</h1><pre><code>建树,然后用lazy标记实现logn的修改.
+</code></pre><h1 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h1><pre><code>#include&lt;bits/stdc++.h&gt;
+#define ll long long
+using namespace std;
+const int maxn=1e5+10;
+struct node{
+    int left,right;
+    ll sum,tag;
+};//节点记录信息
+node Tree[4*maxn];
+ll a[maxn];
+int num=0;
+void Btree(int l,int r,int id){//递归建树
+    //cout&lt;&lt;id&lt;&lt;endl;
+    Tree[id].left=l;
+    Tree[id].right=r;
+    if(l==r){
+        Tree[id].sum=a[++num];
+        //cout&lt;&lt;Tree[id].sum&lt;&lt;&quot; &quot;&lt;&lt;id&lt;&lt;&quot; &quot;&lt;&lt;l&lt;&lt;&quot; &quot;&lt;&lt;r&lt;&lt;endl;
+        return ;
+    }
+    int mid=(Tree[id].left+Tree[id].right)/2;
+     Btree(l,mid,id&lt;&lt;1);
+     Btree(mid+1,r,(id&lt;&lt;1)+1);
+    Tree[id].sum=Tree[id&lt;&lt;1].sum+Tree[(id&lt;&lt;1)+1].sum;
+    return ;
+
+}
+void pushdown(int id){//下放lazy标记
+    if(Tree[id].tag){
+        Tree[id&lt;&lt;1].sum=(Tree[id&lt;&lt;1].right-Tree[id&lt;&lt;1].left+1)*Tree[id].tag;
+        Tree[(id&lt;&lt;1)+1].sum=(Tree[(id&lt;&lt;1)+1].right-Tree[(id&lt;&lt;1)+1].left+1)*Tree[id].tag;
+        Tree[id&lt;&lt;1].tag=Tree[(id&lt;&lt;1)+1].tag=Tree[id].tag;
+        Tree[id].tag=0;
+    }
+}
+void Uptree(int l,int r,ll w,int id){
+        if(l&lt;=Tree[id].left&amp;&amp;Tree[id].right&lt;=r){//更新包含在l,r之间的区间,并加上lazy标记,让下次查询或更新子树时可以临时更新.
+                Tree[id].sum=(Tree[id].right-Tree[id].left+1)*w;
+                Tree[id].tag=w;
+                return ;
+        }
+        pushdown(id);
+        if(l&lt;=Tree[id&lt;&lt;1].right){//如果更新的区间在左子树的区间里有涉及就递归更新左子树
+            Uptree(l,r,w,id&lt;&lt;1);
+        }
+        if(r&gt;=Tree[(id&lt;&lt;1)+1].left){//如果更新的区间在右子树的区间里有涉及就递归更新左子树
+            Uptree(l,r,w,(id&lt;&lt;1)+1);
+        }
+        Tree[id].sum=Tree[id&lt;&lt;1].sum+Tree[(id&lt;&lt;1)+1].sum;//返回更新到父节点
+        return ;
+}
+ll Query(int l,int r,int id){//和更新一样
+    if(l&lt;=Tree[id].left&amp;&amp;Tree[id].right&lt;=r){
+            //cout&lt;&lt;l&lt;&lt;&quot; &quot;&lt;&lt;r&lt;&lt;endl;
+            return Tree[id].sum;
+    }
+    pushdown(id);
+    ll a=0,b=0;
+    if(l&lt;=Tree[id&lt;&lt;1].right){
+        a=Query(l,r,id&lt;&lt;1);
+    }
+    if(r&gt;=Tree[(id&lt;&lt;1)+1].left){
+        b=Query(l,r,(id&lt;&lt;1)+1);
+    }
+    Tree[id].sum=Tree[id&lt;&lt;1].sum+Tree[(id&lt;&lt;1)+1].sum;
+    return a+b;
+}
+int main(){
+    int n,m;
+    scanf(&quot;%d&quot;,&amp;n);
+    for(int i=1;i&lt;=n;i++)
+        scanf(&quot;%lld&quot;,&amp;a[i]);
+    memset(Tree,0,sizeof(Tree));
+    Btree(1,n,1);
+    scanf(&quot;%d&quot;,&amp;m);
+
+    for(int i=1;i&lt;=m;i++){
+        int q;
+        scanf(&quot;%d&quot;,&amp;q);
+        if(q){
+            int l,r;
+            ll w;
+            scanf(&quot;%d%d%lld&quot;,&amp;l,&amp;r,&amp;w);
+            Uptree(l,r,w,1);
+        }else{
+            int l,r;
+            scanf(&quot;%d%d&quot;,&amp;l,&amp;r);
+            ll k=Query(l,r,1);
+            printf(&quot;%lld\n&quot;,k);
+        }
+    }
+
+
+
+}
+</code></pre><h1 id="总结"><a href="#总结" class="headerlink" title="总结:"></a>总结:</h1><pre><code>这是线段树的基本操作,我对于这种高级数据结构还要多多练习,这个要注意的地方是线段树的空间是4*n，我在这里错了好久可以证明。。。
+</code></pre><hr>
+<h1 id="1080-更为复杂的买卖房屋姿势"><a href="#1080-更为复杂的买卖房屋姿势" class="headerlink" title="1080:更为复杂的买卖房屋姿势"></a>1080:更为复杂的买卖房屋姿势</h1><h1 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h1><pre><code>小Hi和小Ho都是游戏迷，“模拟都市”是他们非常喜欢的一个游戏，在这个游戏里面他们可以化身上帝模式，买卖房产。
+
+在这个游戏里，会不断的发生如下两种事件：一种是房屋自发的涨价或者降价，
+而另一种是政府有关部门针对房价的硬性调控。房价的变化自然影响到小Hi和小Ho的决策，
+所以他们希望能够知道任意时刻某个街道中所有房屋的房价总和是多少——但是很不幸的，
+游戏本身并不提供这样的计算。不过这难不倒小Hi和小Ho，他们将这个问题抽象了一下，成为了这样的问题：
+
+小Hi和小Ho所关注的街道的长度为N米，从一端开始每隔1米就有一栋房屋，依次编号为0..N，
+在游戏的最开始，每栋房屋都有一个初始价格，其中编号为i的房屋的初始价格为p_i，
+之后共计发生了M次事件，所有的事件都是对于编号连续的一些房屋发生的，
+其中第i次事件如果是房屋自发的涨价或者降价，则被描述为三元组(L_i, R_i, D_i)，
+表示编号在[L_i, R_i]范围内的房屋的价格的增量（即正数为涨价，负数为降价）为D_i；
+如果是政府有关部门针对房价的硬性调控，则被描述为三元组(L_i, R_i, V_i)，
+表示编号在[L_i, R_i]范围内的房屋的价格全部变为V_i。而小Hi和小Ho希望知道的是——每次事件发生之后，
+这个街道中所有房屋的房价总和是多少。
+</code></pre><h1 id="输入描述："><a href="#输入描述：" class="headerlink" title="输入描述："></a>输入描述：</h1><pre><code>每个测试点（输入文件）有且仅有一组测试数据。
+
+每组测试数据的第1行为两个整数N、M，分别表示街道的长度和总共发生的事件数。
+
+每组测试数据的第2行为N+1个整数，其中第i个整数位p_i，表示编号为i的房屋的初始价格。
+
+每组测试数据的第3-M+2行，按照发生的时间顺序，每行描述一个事件，如果该行描述的事件为，
+“房屋自发的涨价或者降价”，则该行为4个整数0, L_i, R_i, D_i，
+意义如前文所述；如果该行描述的事件为“政府有关部门针对房价的硬性调控”，
+则该行为4个整数1, L_i, R_i, V_i，意义如前文所述。
+
+对于100%的数据，满足N&lt;=10^5，1&lt;=p_i, |D_i|, V_i&lt;=10^4，0&lt;=l_i&lt;r_i&lt;=n。&lt;&gt;
+
+对于100%的数据，满足在任意时刻，任何房屋的价格都处于[1, 10^4]内。
+</code></pre><h1 id="输出描述："><a href="#输出描述：" class="headerlink" title="输出描述："></a>输出描述：</h1><pre><code>对于每组测试数据，输出M行，其中第i行为一个整数Ans_i，表示第i次事件发生之后，这个街道中所有房屋的房价总和。
+</code></pre><h1 id="样例输入："><a href="#样例输入：" class="headerlink" title="样例输入："></a>样例输入：</h1><pre><code>10 6
+3195 2202 4613 3744 2892 4858 619 5079 9478 7366 8942 
+0 1 6 886
+1 0 2 9710
+1 0 10 7980
+0 4 9 -7594
+0 2 8 1581
+0 4 4 -1010
+</code></pre><h1 id="样例输出："><a href="#样例输出：" class="headerlink" title="样例输出："></a>样例输出：</h1><pre><code>58304
+75652
+87780
+42216
+53283
+52273
+</code></pre><h1 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h1><pre><code>这个题有两个修改，所以要用到双标记，然后对双标记进行维护。具体维护见代码。
+</code></pre><h1 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h1><pre><code>#include&lt;bits/stdc++.h&gt;
+
+using namespace std;
+struct node{
+    int lt,rt,sum;
+    int sets,add;
+};//树的节点信息
+const int maxn=1e5+100;
+int a[maxn];
+node tree[4*maxn];
+int num=0;
+void build(int l,int r,int id){//建树
+        tree[id].lt=l;
+        tree[id].rt=r;
+        tree[id].sets=0;
+        tree[id].add=0;
+        if(l==r){
+            tree[id].sum=a[++num];
+            return;
+        }
+        int mid=(l+r)&gt;&gt;1;
+        build(l,mid,id&lt;&lt;1);
+        build(mid+1,r,id&lt;&lt;1|1);
+        tree[id].sum=tree[id&lt;&lt;1].sum+tree[id&lt;&lt;1|1].sum;
+        //cout&lt;&lt;tree[id].sum&lt;&lt;endl;
+        return ;
+}
+void pushdown(int id){
+    if(tree[id].sets){//更据题意set标记会清空add标记但这里只要清空左右子树的，
+            因为自身的标记在更新的时候被清空了如果还要add标记这意味着add的
+            修改在set标记的后面不需要清空。
+        tree[id&lt;&lt;1].sum=(tree[id&lt;&lt;1].rt-tree[id&lt;&lt;1].lt+1)*tree[id].sets;
+        tree[id&lt;&lt;1|1].sum=(tree[id&lt;&lt;1|1].rt-tree[id&lt;&lt;1|1].lt+1)*tree[id].sets;
+        tree[id&lt;&lt;1].sets=tree[id&lt;&lt;1|1].sets=tree[id].sets;
+        tree[id].sets=0;
+        tree[id&lt;&lt;1].add=tree[id&lt;&lt;1|1].add=0;
+    }
+    if(tree[id].add){//这个add标记和一搬的修改维护差不多。
+        tree[id&lt;&lt;1].sum+=(tree[id&lt;&lt;1].rt-tree[id&lt;&lt;1].lt+1)*tree[id].add;
+        tree[id&lt;&lt;1|1].sum+=(tree[id&lt;&lt;1|1].rt-tree[id&lt;&lt;1|1].lt+1)*tree[id].add;
+        tree[id&lt;&lt;1].add+=tree[id].add;
+        tree[id&lt;&lt;1|1].add+=tree[id].add;
+        //cout&lt;&lt;tree[id&lt;&lt;1].add&lt;&lt;&quot; &quot;&lt;&lt;tree[id&lt;&lt;1|1].add&lt;&lt;endl;
+        tree[id].add=0;
+    }
+    return ;
+}
+void update(int t,int l,int r,int w,int id){
+    if(l&lt;=tree[id].lt&amp;&amp;tree[id].rt&lt;=r){//更据输入的标识来决定那个标记修改
+        if(t==1){
+            tree[id].sum=(tree[id].rt-tree[id].lt+1)*w;
+            tree[id].sets=w;
+            tree[id].add=0;
+        }else{
+            tree[id].sum+=(tree[id].rt-tree[id].lt+1)*w;
+            tree[id].add+=w;
+            //cout&lt;&lt;tree[id].lt&lt;&lt;&quot; &quot;&lt;&lt;tree[id].rt&lt;&lt;&quot; &quot;&lt;&lt;tree[id].sum&lt;&lt;endl;
+        }
+        return ;
+    }
+    pushdown(id);
+    int mid=(tree[id].lt+tree[id].rt)&gt;&gt;1;
+    if(l&lt;=mid){
+        update(t,l,r,w,id&lt;&lt;1);
+    }
+    if(r&gt;=mid+1){
+        update(t,l,r,w,id&lt;&lt;1|1);
+    }
+    tree[id].sum=tree[id&lt;&lt;1].sum+tree[id&lt;&lt;1|1].sum;
+    return ;
+}
+int main(){
+    int n,m;
+    scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+    for(int i=1;i&lt;=n+1;i++)
+        scanf(&quot;%d&quot;,&amp;a[i]);
+    num=0;
+    build(1,n+1,1);
+   for(int i=1;i&lt;=m;i++){
+        int type,l,r,w;
+        scanf(&quot;%d%d%d%d&quot;,&amp;type,&amp;l,&amp;r,&amp;w);
+        update(type,l+1,r+1,w,1);
+        printf(&quot;%d\n&quot;,tree[1].sum);
+   }
+
+   return 0;
+}
+</code></pre><h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><pre><code>这是线段树的一种运用，这种题，我现在还做不出，希望训练后有一定的提升。
+</code></pre><hr>
+<p>#1079 : 离散化</p>
+<h1 id="题目描述：-1"><a href="#题目描述：-1" class="headerlink" title="题目描述："></a>题目描述：</h1><pre><code>小Hi和小Ho在回国之后，重新过起了朝7晚5的学生生活，当然了，他们还是在一直学习着各种算法~
+
+这天小Hi和小Ho所在的学校举办社团文化节，各大社团都在宣传栏上贴起了海报，但是贴来贴去，
+有些海报就会被其他社团的海报所遮挡住。看到这个场景，
+小Hi便产生了这样的一个疑问——最后到底能有几张海报还能被看见呢？
+
+于是小Ho肩负起了解决这个问题的责任：因为宣传栏和海报的高度都是一样的，
+所以宣传栏可以被视作长度为L的一段区间，且有N张海报按照顺序依次贴在了宣传栏上，
+其中第i张海报贴住的范围可以用一段区间[a_i, b_i]表示，其中a_i, b_i均为属于[0, L]的整数，
+而一张海报能被看到当且仅当存在长度大于0的一部分没有被后来贴的海报所遮挡住。
+那么问题就来了：究竟有几张海报能被看到呢？
+</code></pre><h1 id="输入描述：-1"><a href="#输入描述：-1" class="headerlink" title="输入描述："></a>输入描述：</h1><pre><code>每个测试点（输入文件）有且仅有一组测试数据。
+
+每组测试数据的第1行为两个整数N和L，分别表示总共贴上的海报数量和宣传栏的宽度。
+
+每组测试数据的第2-N+1行，按照贴上去的先后顺序，每行描述一张海报，
+其中第i+1行为两个整数a_i, b_i，表示第i张海报所贴的区间为[a_i, b_i]。
+
+对于100%的数据，满足N&lt;=10^5，L&lt;=10^9，0&lt;=a_i&lt;b_i&lt;=L。
+</code></pre><h1 id="输出描述：-1"><a href="#输出描述：-1" class="headerlink" title="输出描述："></a>输出描述：</h1><pre><code>对于每组测试数据，输出一个整数Ans，表示总共有多少张海报能被看到。
+</code></pre><h1 id="样例输入：-1"><a href="#样例输入：-1" class="headerlink" title="样例输入："></a>样例输入：</h1><pre><code>5 10
+4 10
+0 2
+1 6
+5 9
+3 4
+</code></pre><h1 id="样例输出：-1"><a href="#样例输出：-1" class="headerlink" title="样例输出："></a>样例输出：</h1><pre><code>5
+</code></pre><h1 id="思路：-1"><a href="#思路：-1" class="headerlink" title="思路："></a>思路：</h1><pre><code> 一开始我看到题目是无法想到线段树的，后来看到提示我才明白可以用一个标记记录，
+如果海报在这个区间整体，可见记录一个标号（标号是递增的），最后只要统计有多少个不同的标号。
+但这有个问题是这个叶子点个数和区间长度有关，而l有1e9会炸内存，
+但我们有用的信息是区间之间的关系
+[1，9]和[2，9] 与 [1，5]和[2，5]的区间关系是一样的。所以我们想到了离散化。
+注意的是建树时区间是(l,mid),(mid,r),具体看代码。
+</code></pre><h1 id="代码：-1"><a href="#代码：-1" class="headerlink" title="代码："></a>代码：</h1><pre><code>#include&lt;bits/stdc++.h&gt;
+
+using namespace std;
+const int maxn=1e5+100;
+struct node{
+    int lt,rt,flag;
+};
+int a[maxn],b[maxn];
+vector&lt;int&gt;st;
+node tree[4*maxn];
+int vis[maxn];
+int ans;
+int getid(int pos){
+    int p=lower_bound(st.begin(),st.end(),pos)-st.begin()+1;
+    return p;
+}
+void Btree(int l,int r,int id){
+    tree[id].lt=l;
+    tree[id].rt=r;
+    tree[id].flag=0;
+    if(l+1==r)
+        return;
+    int mid=(l+r)&gt;&gt;1;
+    Btree(l,mid,id&lt;&lt;1);//这是个区间覆盖问题 他的数据是连续的
+     如果[3，4]和[4，5]区间有海报那么如果 mid+1就不能正确表示出来。
+    所以这题建树有一定的区别。
+    Btree(mid,r,id&lt;&lt;1|1);
+    return ;
+}
+void update(int l,int r,int x,int id){
+
+    if(l==tree[id].lt&amp;&amp;r==tree[id].rt){
+            tree[id].flag=x;
+            return ;
+    }
+     if(tree[id].lt+1&gt;=tree[id].rt)
+        return ;
+    if(tree[id].flag){
+        tree[id&lt;&lt;1].flag=tree[id&lt;&lt;1|1].flag=tree[id].flag;
+        tree[id].flag=0;
+    }
+    int mid=(tree[id].lt+tree[id].rt)&gt;&gt;1;
+    if(r&lt;=mid)
+    update(l,r,x,id&lt;&lt;1);
+    else if(l&gt;mid)
+    update(l,r,x,id&lt;&lt;1|1);
+    else {
+        update(l,mid,x,id&lt;&lt;1);
+        update(mid,r,x,id&lt;&lt;1|1);
+    }
+    return ;
+}
+void query(int l,int r,int id){
+    //cout&lt;&lt;l&lt;&lt;&quot; &quot;&lt;&lt;r&lt;&lt;endl;
+    //cout&lt;&lt;tree[id].flag&lt;&lt;endl;
+    if(tree[id].flag&amp;&amp;!vis[tree[id].flag]){
+        ans++;
+        vis[tree[id].flag]=1;
+    }
+    if(tree[id].lt+1&gt;=tree[id].rt)
+        return ;
+    if(!vis[tree[id].flag]){
+        int mid=(l+r)&gt;&gt;1;
+        query(l,mid,id&lt;&lt;1);
+        query(mid,r,id&lt;&lt;1|1);
+    }
+
+}
+int main(){
+    int n,l;
+    scanf(&quot;%d%d&quot;,&amp;n,&amp;l);
+    for(int i=1;i&lt;=n;i++){
+        scanf(&quot;%d%d&quot;,&amp;a[i],&amp;b[i]);
+        st.push_back(a[i]);
+        st.push_back(b[i]);
+    }
+    sort(st.begin(),st.end());
+    st.erase(unique(st.begin(),st.end()),st.end());去重为离散化做准备。
+    int h=st.size();
+    Btree(1,h,1);//建树
+    int x=0;
+    for(int i=1;i&lt;=n;i++){
+        int l,r;
+        l=getid(a[i]);//区间进行离散化
+        r=getid(b[i]);
+       // cout&lt;&lt;l&lt;&lt;&quot; &quot;&lt;&lt;r&lt;&lt;endl;
+        update(l,r,++x,1);//给每张海报编号
+    }
+    ans=0;
+    memset(vis,0,sizeof(vis));
+    query(1,h,1);
+    printf(&quot;%d\n&quot;,ans);
+    return 0;
+}
+</code></pre><h1 id="总结：-1"><a href="#总结：-1" class="headerlink" title="总结："></a>总结：</h1><pre><code>这题让我看了更多有技巧的操作，这种在线查询线段树还是强，可持续线段树以后有时间再搞搞，下次应该
+看看树状数组。
+现在的努力只为变得更强。
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/14/rmq入门1/" rel="next" title="rmq入门1">
+                <i class="fa fa-chevron-left"></i> rmq入门1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="WXL666" />
+            
+              <p class="site-author-name" itemprop="name">WXL666</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/Categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="undefined" target="_blank" title="github">
+                      
+                        <i class="fa fa-fw fa-globe"></i>github</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://wxlabc.github.io/" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1078-线段树的区间修改"><span class="nav-number">1.</span> <span class="nav-text">1078 : 线段树的区间修改</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述"><span class="nav-number">2.</span> <span class="nav-text">题目描述:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入描述"><span class="nav-number">3.</span> <span class="nav-text">输入描述:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输出描述"><span class="nav-number">4.</span> <span class="nav-text">输出描述:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例输入"><span class="nav-number">5.</span> <span class="nav-text">样例输入:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例输出"><span class="nav-number">6.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思路"><span class="nav-number">7.</span> <span class="nav-text">思路:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码"><span class="nav-number">8.</span> <span class="nav-text">代码:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">9.</span> <span class="nav-text">总结:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1080-更为复杂的买卖房屋姿势"><span class="nav-number">10.</span> <span class="nav-text">1080:更为复杂的买卖房屋姿势</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述："><span class="nav-number">11.</span> <span class="nav-text">题目描述：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入描述："><span class="nav-number">12.</span> <span class="nav-text">输入描述：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输出描述："><span class="nav-number">13.</span> <span class="nav-text">输出描述：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例输入："><span class="nav-number">14.</span> <span class="nav-text">样例输入：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例输出："><span class="nav-number">15.</span> <span class="nav-text">样例输出：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思路："><span class="nav-number">16.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码："><span class="nav-number">17.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结："><span class="nav-number">18.</span> <span class="nav-text">总结：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#题目描述：-1"><span class="nav-number">19.</span> <span class="nav-text">题目描述：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入描述：-1"><span class="nav-number">20.</span> <span class="nav-text">输入描述：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输出描述：-1"><span class="nav-number">21.</span> <span class="nav-text">输出描述：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例输入：-1"><span class="nav-number">22.</span> <span class="nav-text">样例输入：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#样例输出：-1"><span class="nav-number">23.</span> <span class="nav-text">样例输出：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#思路：-1"><span class="nav-number">24.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码：-1"><span class="nav-number">25.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结：-1"><span class="nav-number">26.</span> <span class="nav-text">总结：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WXL666</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="js/src/love.js"></script>
